@@ -26,7 +26,7 @@
 #include "main.h"
 
 /* Private constants ---------------------------------------------------------*/
-const uint16_t VERSION = 1.2;
+const uint16_t VERSION = 1.3;
 
 /* Defines -------------------------------------------------------------------*/
 #define BOOT_START_ADDRESS 					(0x8000000U)
