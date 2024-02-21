@@ -2,9 +2,9 @@
 
 Bootloader via CAN-bus for STM32H743
 
-**`Bootloader`** - program of bootloader via CAN-bus without using additional pins on MC  
-**`UserProgExample`** - example of user program with issues that should be implemented for bootloader   
-**`Win_Canloader`** - windows program for loading user program ( in .bin format) to MC via CAN-bus   
+**`Bootloader`** - program of bootloader via CAN-bus without set/reset additional pins of microcontroller
+**`UserProgExample`** - example of user program with specifics that should be implemented for bootloader compliance   
+**`Win_Canloader`** - windows program for loading user program ( in `.bin` format) to microcontroller via CAN-bus   
 
 ## Flash memory usage
 
@@ -16,15 +16,15 @@ This bootloader works only with BANK1 of Flash memory.
 
 ## Bootloader
 
-After start running, bootloader waits CAN-msg with determined id for some delay (default 2 sec).  This delay can be set in user config data (Sector1). 
+After start running, bootloader waits CAN-messages with determined ID for some delay (default 2 sec).  This delay can be set in user config data (Sector1). 
 
 After delay bootloader gives control to user program.
 
-By default, bootloader communicates with two CAN-ids: 0x560 and 0x570. If there are several boards on same CAN-bus, each board should identificate itself by writing its board-id to user config data (Sector1). Bootloader reads board-id and adds this value to CAN-id expecting for program loading. For example, board-id is 2, so bootloader will wait CAN-msg with can-id 0x562 and 0x572.
+By default, bootloader communicates with two CAN-IDs: 0x560 and 0x570. If there are several boards on same CAN-bus, each board should identificate itself by writing its board-id to user config data (Sector1). Bootloader reads board-id and adds this value to CAN-ID expecting for program loading. For example, board-id is 2, so bootloader will wait CAN-messages with CAN-ID 0x562 and 0x572.
 
-Messages with can-id 0x56x are command messages for bootloader.  
+Messages with CAN-ID 0x56x are command messages to bootloader.  
 
-Messages with can-id 0x57x are messages with program bytes.
+Messages with CAN-ID 0x57x are messages with program text bytes.
 
 Baudrate of CAN-bus: 500 kbps.
 
@@ -48,9 +48,9 @@ User program should implement some specifics to be compliant with bootloader:
 
 > FLASH (rx) : ORIGIN = 0x08040000, LENGTH = 1792K
 
-   In Keil: `Options for target`  ->  `Linker` -> `R/O Base`: 0x08040000
+   In Keil: `Options for target -> Linker -> R/O Base`: 0x08040000
 
-3. Set checkbox for creating output binary file in STM32CubeIDE:
+3. In STM32CubeIDE set checkbox for creating output binary file :
 
 > Project-> Properties -> C/C++ Build Settings -> Tool Settings -> 
 > 
@@ -62,7 +62,7 @@ User program should implement some specifics to be compliant with bootloader:
 
 This windows application is used to download user program to microcontroller.   
 
-It works and tested with **sysWORKXX USB CAN module1** of [SYS TEC electronic](www.systec-electronic.com)
+It works and tested with **sysWORKXX USB CAN module1** of [SYS TEC electronic](https://systec-electronic.com)
 
 Start `CANLoader.exe`
 

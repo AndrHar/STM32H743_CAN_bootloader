@@ -8,9 +8,9 @@ Simple example of user program with implemented bootloader specifics to be compl
 
 > FLASH (rx) : ORIGIN = 0x08040000, LENGTH = 1792K
 
-In Keil: `Options for target` -> `Linker` -> `R/O Base`: 0x08040000
+In Keil: `Options for target -> Linker -> R/O Base`: 0x08040000
 
-3. Set checkbox for creating output binary file in STM32CubeIDE:
+3. In STM32CubeIDE set checkbox for creating output binary file :
 
 > Project-> Properties -> C/C++ Build Settings -> Tool Settings ->
 > 
@@ -18,6 +18,4 @@ In Keil: `Options for target` -> `Linker` -> `R/O Base`: 0x08040000
 
 4. Implement features to change user config data.
 
-
-
-Example is created in STM32CubeIDE.
+Example was created in STM32CubeIDE.

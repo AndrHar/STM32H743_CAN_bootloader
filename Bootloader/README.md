@@ -2,8 +2,6 @@
 
 Bootloader via CAN-bus for STM32H743
 
-
-
 ## Flash memory usage
 
 This bootloader works only with BANK1 of Flash memory.
@@ -14,15 +12,15 @@ This bootloader works only with BANK1 of Flash memory.
 
 ## Bootloader
 
-After start running, bootloader waits CAN-msg with determined ID for some delay (default 2 sec). This delay can be set in user config data (Sector1).
+After start running, bootloader waits CAN-messages with determined ID for some delay (default 2 sec). This delay can be set in user config data (Sector1).
 
 After delay bootloader gives control to user program.
 
-By default, bootloader communicates with two CAN-ids: 0x560 and 0x570. If there are several boards on same CAN-bus, each board should identificate itself by writing its board-id to user config data (Sector1). Bootloader reads board-id and adds this value to CAN-id expecting for program loading. For example, board-id is 2, so bootloader will wait CAN-msg with can-id 0x562 and 0x572.
+By default, bootloader communicates with two CAN-IDs: 0x560 and 0x570. If there are several boards on same CAN-bus, each board should identificate itself by writing its board-id to user config data (Sector1). Bootloader reads board-id and adds this value to CAN-ID expecting for program loading. For example, board-id is 2, so bootloader will wait CAN-messages with CAN-ID 0x562 and 0x572.
 
-Messages with can-id 0x56x are command messages for bootloader.
+Messages with CAN-ID 0x56x are command messages to bootloader.
 
-Messages with can-id 0x57x are messages with program bytes.
+Messages with CAN-ID 0x57x are messages with program text bytes.
 
 Baudrate of CAN-bus: 500 kbps.
 
