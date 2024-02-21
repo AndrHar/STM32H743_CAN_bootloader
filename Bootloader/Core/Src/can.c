@@ -22,7 +22,6 @@ FDCAN_TxHeaderTypeDef headerTxMsg_0x555;
 /*--- RxHeader Filters Variables ---*/
 FDCAN_FilterTypeDef headerRxMsg_0x56x;
 FDCAN_FilterTypeDef headerRxMsg_0x57x;
-FDCAN_FilterTypeDef headerRxMsg_0x58x;
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -400,17 +399,6 @@ void Config_RxFilters(uint32_t *idArray)
 
 	RxFilterRegisterConfig(&headerRxMsg_0x57x);
 
-	/* Configure Rx filter Msg ID 0x58x */
-	index = FDCAN_RX_BUFFER2;
-	headerRxMsg_0x58x.RxBufferIndex = index;
-	headerRxMsg_0x58x.FilterIndex = index;
-	headerRxMsg_0x58x.IdType = FDCAN_STANDARD_ID;
-	headerRxMsg_0x58x.FilterType = FDCAN_FILTER_DUAL;
-	headerRxMsg_0x58x.FilterConfig = FDCAN_FILTER_TO_RXBUFFER;
-	headerRxMsg_0x58x.FilterID1 = idArray[index];
-	headerRxMsg_0x58x.FilterID2 = 0x00;
-
-	RxFilterRegisterConfig(&headerRxMsg_0x58x);
 
 }
 /* --------------------- End Config_RxFilters --------------------------------*/

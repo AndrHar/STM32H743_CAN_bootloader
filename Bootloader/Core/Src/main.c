@@ -17,7 +17,7 @@
   * The protocol of loading program via CAN was used 'as it is' for windows
   * program 'CANLoader'
   *
-  * Bootloader can be reset by CAN-msg with id: 0x580+BoardId. Byte0 should be 0xAA, Byte1= 0xBB
+  * Bootloader can be reset by CAN-msg with id: 0x560+BoardId. Byte0 should be 0x55, Byte1= 0x66
   *
   ******************************************************************************
   */
@@ -64,15 +64,13 @@ static typeDefCanMessage CAN_TxMsg_0x555;
 
 
 /* ---------- CAN RxMsg headers ------------------*/
-uint32_t rxCANid[] = {0x560, 0x570, 580};
+uint32_t rxCANid[] = {0x560, 0x570};
 
 extern FDCAN_FilterTypeDef headerRxMsg_0x56x; //declaration in 'can.c'
 extern FDCAN_FilterTypeDef headerRxMsg_0x57x; //declaration in 'can.c'
-extern FDCAN_FilterTypeDef headerRxMsg_0x58x; //declaration in 'can.c'
 
 static typeDefCanMessage CAN_RxMsg_0x56x;
 static typeDefCanMessage CAN_RxMsg_0x57x;
-static typeDefCanMessage CAN_RxMsg_0x58x;
 
 /*----------------------------------------------------------------------------*/
 
@@ -343,17 +341,7 @@ void CheckRxMessageCAN1 (void)
 		Actions_CAN_0x57x_received();
 	}
 
-	/* Check Msg 0x58x reception */
-	if((reg_NewDataFlags & (1 << headerRxMsg_0x58x.RxBufferIndex)) != 0)
-	{
-		ReceiveCanMsg(headerRxMsg_0x58x.RxBufferIndex, CAN_RxMsg_0x58x.data, CAN_MODULE1);
 
-		// check command for reset MC
-		if ( (CAN_RxMsg_0x58x.data[0] == 0xAA) && (CAN_RxMsg_0x58x.data[1] == 0xBB) )
-		{
-			NVIC_SystemReset();
-		}
-	}
 }
 /* End CheckRxMessageCAN1 ---------------------------------------------------*/
 
@@ -433,9 +421,16 @@ void Actions_CAN_0x56x_received(void)
 				NVIC_SystemReset();
 				break;
 
-		case 0xEE:
+		case 0xEE: // ping
 				CAN_TxMsg_0x551.onetime_transmit = 1;
 				default:
+				break;
+
+		case 0x55: // check reset command
+				if (CAN_RxMsg_0x56x.data[1] == 0x66)
+				{
+					NVIC_SystemReset();
+				}
 				break;
 	}
 

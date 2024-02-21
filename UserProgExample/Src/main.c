@@ -132,7 +132,7 @@ void CheckRxMessageCAN1 (void)
 		ReceiveCanMsg(headerRxMsg_0x58x.RxBufferIndex, CAN_RxMsg_0x58x.data, CAN_MODULE1);
 
 		/* example of jumping back to bootloader */
-		if ( (CAN_RxMsg_0x58x.data[0] == 0xAA) &&  (CAN_RxMsg_0x58x.data[1] == 0xBB))
+		if ( (CAN_RxMsg_0x58x.data[0] == 0x55) &&  (CAN_RxMsg_0x58x.data[1] == 0x66))
 		{
 			// MC always starts from bootloader after reset
 			NVIC_SystemReset();
