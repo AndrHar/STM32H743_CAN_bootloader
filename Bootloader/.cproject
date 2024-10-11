@@ -44,8 +44,8 @@
 									<listOptionValue builtIn="false" value="STM32H7"/>
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths.1191354319" name="Include paths (-I)" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;D:\STUDY\Keil\STM32H743_CAN_bootloader\Bootloader\Core\Inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;D:\STUDY\Keil\STM32H743_CAN_bootloader\Bootloader\CMSIS\Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;../Core\Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;../CMSIS\Inc&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1298982460" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
